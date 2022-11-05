@@ -1,0 +1,91 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left=19mm,right=19mm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{spacing}{1.5}
+\setlength{\parindent}{0ex}
+
+\section*{Семинар 1}
+
+
+\subsection*{Основы теории множеств}
+
+\textbf{Определение 1.1.}
+Пусть заданы множества $X$ и $Y$. Их \textit{декартовым произведением} называется совокупность всевозможных упорядоченных пар $(x,y)$, где $x \in X$, $y \in Y$.
+
+\textbf{Определение 1.2.}
+\textit{Бинарным отношением} на множестве $E$ называется подмножество $\rho \in E \times E$, т.е. $\rho$ -- некоторый набор пар из $E \times E$.
+
+\textbf{Определение 1.3.}
+Бинарное отношение $R$ на множестве $E$ называется \textit{отношением эквивалентности}, если выполняются свойства:
+\begin{enumerate}[noitemsep]
+    \item рефлексивность: $(a,a) \in R$ $\forall a \in E$.
+    \item симметричность: $((a,b) \in R) \rightarrow ((b,a) \in R)$.
+    \item транзитивность: $((a,b) \in R \wedge (b,c) \in R) \rightarrow ((a,c) \in R)$.
+\end{enumerate}
+и \textit{отношением порядка}, если в п.2) вместо симметричности выполняется антисимметричность: $((a,b) \in R \wedge (b,a) \in R) \rightarrow (a = b)$.
+
+\textbf{Упражнение.} Показать, что отношение $R$ на множестве целых чисел $\mathbb{Z}$, заданное как $R := \{ (a,b) \ | \ a \equiv b \ (\mathrm{mod} \ m) \}$ является отношением эквивалентности.
+
+\textit{Замечание.} Говорят, что $a \equiv b \ (\mathrm{mod} \ m)$, если они имеют одинаковый остаток при делении на $m$, либо, что то же самое, если $\exists k \in \mathbb{Z}: (a-b) = km$, т.е. их разность делится на $m$ без остатка. 
+
+\textit{Подсказка.} Нужно проверить выполнимость свойств из определения.
+
+Другие примеры отношения эквивалентности -- подобие фигур и параллельность.
+
+
+\subsection*{Линейные пространства}
+
+\textbf{Определение 1.4.} \textit{Линейным пространством} $V$ над полем $F$ (пока что будем рассматривать дйствительные числа $\mathbb{R}$) называется четвёрка $(V, F, +, \cdot)$, где:
+\begin{itemize}[noitemsep]
+    \item $V$ -- множество векторов.
+    \item $F$ -- множество скаляров.
+    \item определена операция сложения векторов $+: V \times V \rightarrow V$.
+    \item определена операция вектора на скаляр $\cdot: F \times V \rightarrow V$.
+\end{itemize}
+Заданные операции должны удовлетворять аксиомам линейного пространства!
+
+\newpage
+
+Примеры линейных пространств:
+\begin{itemize}[noitemsep]
+    \item $V_1, V_2, V_3$ -- множества векторов на праямой, плоскости и в пространстве.
+    \item $M_{n \times k}(F)$ -- матрицы размера $n \times k$, элементы которых принадлежат $F$.
+    \item $F[x]$ -- многочлены от переменной $x$ с коэффициентами из $F$.
+\end{itemize}
+
+\textbf{Упражнение.} используя аксиомы линейного пространства, доказать:
+\begin{enumerate}[noitemsep, label=\alph*)]
+    \item $0 \cdot \overline{v} = \overline{0}$ $\forall \overline{v} \in V$.
+    \item $\alpha \cdot \overline{0} = \overline{0}$ $\forall \alpha \in F$.
+    \item $-1 \cdot \overline{v} = - \overline{v}$ $\forall \overline{v} \in V$.
+\end{enumerate}
+
+\textbf{Определение 1.5.} Система векторов $(\overline{v}_1, ..., \overline{v}_n)$ называется \textit{линейно независимой}, если $\sum_{i=1}^n \alpha_i \overline{v}_i = \overline{0} \Leftrightarrow \alpha_1 = ... = \alpha_n = 0$.
+
+\textbf{Определение 1.6.} Линейная комбинация $\alpha_1 \overline{v}_1 + ... + \alpha_n \overline{v}_n$ называется \textit{нетривиальной}, если $\exists i : \alpha_i \neq 0$.
+
+\textbf{Определение 1.7.} Система векторов $(\overline{v}_1, ..., \overline{v}_n)$ называется \textit{линейно зависимой}, если существует её нетривиальная линейная комбинация, равная $\overline{0}$.
+
+\textbf{Упражнение.} Доказать, что если система ЛЗ, то и любая её надсистема также ЛЗ; если система ЛНЗ, то и любая её подсистема ЛНЗ.
+
+\textbf{Утверждение.} В ЛЗ системе векторов $(\overline{v}_1, ..., \overline{v}_n)$ существует вектор, который выражается через все остальные, но не обязательно все!
+
+\textbf{Определение 1.8.} Пусть задано линейное пространство $V$ над полем $F$. \textit{Линейной оболочкой} векторов $\overline{v}_1, ..., \overline{v}_k$ называется множество всевозможных линейных комбинаций:
+$$< \overline{v}_1, ..., \overline{v}_k > = \left\{ \sum_{i=1}^k \alpha_i \overline{v}_i \ | \ \alpha_1, ..., \alpha_k \in F \right\}$$
+
+\textbf{Определение 1.9.} \textit{Базисом} в линейном пространстве $V$ называется такая линейно независимая система $(\overline{v}_1, ..., \overline{v}_n)$, где $\overline{v}_i \in V$, что $< \overline{v}_1, ..., \overline{v}_k > \ = V$.
+Таким образом, через базис можно выразить любой элемент линейного пространства при промощи некоторой линейной комбинации.
+
+\textbf{Определение 1.10.} \textit{Размерность} линейного пространства -- число векторов в его базисе.
+
+\end{spacing}
+\end{document}

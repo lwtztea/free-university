@@ -1,0 +1,306 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left=19mm,right=19mm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{spacing}{1.5}
+\setlength{\parindent}{0ex}
+\setlength{\abovedisplayskip}{11pt}
+\setlength{\belowdisplayskip}{11pt}
+
+\section*{Семинар 2}
+
+
+\subsection*{Линейные отображения}
+
+\textbf{Определение 2.1.} 
+Пусть $U, V$ -- линейные пространства. \textit{Линейным отображением} называется такое отображение $\varphi: U \rightarrow V$ , что оно удовлетворяет свойствам линейности:
+\begin{itemize} [noitemsep]
+    \item $\forall u_1, u_2 \in U: \varphi(u_1 + u_2) = \varphi(u_1) + \varphi(u_2)$
+    \item $\forall u \in U, \forall \alpha \in \mathbb{R}: \varphi(\alpha u) = \alpha \varphi(u)$
+\end{itemize}
+
+\textbf{Определение 2.2.} 
+Пусть $V$ -- линейное пространство. Отображение $f: V \rightarrow \mathbb{R}$ называется \textit{линейной функцией}, если выполнены свойства линейности:
+\begin{itemize} [noitemsep]
+    \item $\forall v_1, v_2 \in V: f(u_1 + u_2) = f(u_1) + f(u_2)$
+    \item $\forall v \in V, \forall \alpha \in \mathbb{R}: f(\alpha u) = \alpha f(u)$
+\end{itemize}
+
+\textit{Замечание.} По сути функция есть отображение в некоторое множество скаляров.
+
+Нужно понимать различие между векторами и скалярами. Пусть, например, есть некоторый вектор \textbf{5}, заданный на прямой, и число 5. Тогда мы не можем складывать их друг с другом, так как это разные объекты. Но мы можем умножить 5 на \textbf{5}, поскольку в линейном пространстве определено умножение вектора на число!
+
+\textbf{Упражнение 2.1.} На плоскости задано отображение:
+\begin{align*}
+    \tilde{x}_1 = x_1 \cos \varphi - x_2 \sin \varphi \\
+    \tilde{x}_2 = x_1 \sin \varphi + x_2 \cos \varphi 
+\end{align*}
+Проверить, что оно линейно, и найти его матрицу.
+
+\underline{Решение}:
+
+\setlength{\leftskip}{5ex}
+\setlength{\rightskip}{5ex}
+
+Поскольку $\varphi$ -- это некоторый фиксированный угол, мы можем обозначить для краткости записи $a = \cos \varphi$ и $b = \sin \varphi$. Тогда отображение примет вид:
+\begin{align*}
+    \tilde{x}_1 = a x_1 - b x_2 \\
+    \tilde{x}_2 = b x_1 + a x_2
+\end{align*}
+
+Теперь, чтобы доказать линейность, нужно проверить свойства линейного отображения. Возьмём два произвольных вектора $y = (y_1, y_2)^T$ и $z = (z_1, z_2)^T$ из нашего двумерного пространства (плоскости). В декартовой системе координат сложение векторов происходит покомпонентно, т.е. $y + z = (y_1 + z_1, y_2 + z_2)$. Посмотрим, куда переходит вектор $y + z$ при отображении:
+\begin{align*}
+    \widetilde{(y+z)}_1 = a (y_1 + z_1) - b (y_2 + z_2) = (a y_1 - b y_2) + (a z_1 - b z_2) = \tilde{y}_1 + \tilde{z}_1\\
+    \widetilde{(y+z)}_2 = b (y_1 + z_1)+ a (y_2 + z_2) = (b y_1 + a y_2) + (b z_1 + a z_2) = \tilde{y}_2 + \tilde{z}_2
+\end{align*}
+
+Таким образом, мы проверили первое свойство. Второе свойство проверяется также просто :) матрица данного отображения:
+\begin{align*}
+\begin{pmatrix}
+a & -b \\
+b & a 
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos \varphi & - \sin \varphi \\
+\sin \varphi & \cos \varphi
+\end{pmatrix}
+\end{align*}
+
+\setlength{\leftskip}{0ex}
+\setlength{\rightskip}{0ex}
+
+\textbf{Упражнение 2.2.} На плоскости заданы три вектора $x = (1, 3)^T$, $y = (1, 4)^T$ и $z = (3, 2)^T$. Проверить линейную зависимость системы $\{x, y, z\}$.
+
+\underline{Решение}:
+
+\setlength{\leftskip}{5ex}
+\setlength{\rightskip}{5ex}
+
+ Система векторов является линейно зависимой, если существует её нетривиальная линейная комбинация, равная нулю. Т.е. нужно показать, что $\exists a, b, c$ такие, что они не равны нулю одновременно и $ax + by + cz = 0$. Зная это, можно перейти к системе линейных уравнений:
+ \begin{align*}
+ \begin{cases}
+    a x_1 + b y_1 + c z_1 = 0 \\
+    a x_2 + b y_2 + c z_2 = 0
+\end{cases}
+\end{align*}
+
+Подставим в систему известные нам значения $x$, $y$ и $z$:
+ \begin{align*}
+ \begin{cases}
+    a + b + 3c= 0 \\
+    3a + 4b + 2c = 0
+\end{cases}
+\end{align*}
+
+Теперь можно записать \textit{матрицу системы} (т.е. матрицу, состоящую из коэффициентов данной системы):
+\begin{align*}
+A = 
+\begin{pmatrix}
+1 & 1 & 3 \\
+3 & 4 & 2 
+\end{pmatrix}
+\end{align*}
+
+На самом деле на вопрос о линейной зависимости можно ответить уже сейчас. Действительно, если в матрице \textit{однородной системы линейных уравнений} (т.е. такой, что все свободные члены в ней равны нулю) число строк строго меньше числа столбов, то существует хотя бы одно нетривиальное решение этой системы. Чтобы найти коэффициенты, приведём матрицу к ступенчатому виду при помощи элементарных преобразований строк:
+\begin{align*}
+\begin{pmatrix}
+1 & 1 & 3 \\
+3 & 4 & 2 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+3 & 3 & 9 \\
+3 & 4 & 2 
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+3 & 3 & 9 \\
+0 & -1 & 7 
+\end{pmatrix}
+\end{align*}
+
+Отсюда $-b + 7c = 0 \Rightarrow b = 7c$ и $a + b + 3c = 0 \Rightarrow a = -b - 3c \Rightarrow a = -7c - 3c = -10c$. И любая тройка коэффициентов $(-10c, 7c, c)$ является решением системы.
+
+\setlength{\leftskip}{0ex}
+\setlength{\rightskip}{0ex}
+
+\textbf{Упражнение 2.3.} Пусть $V$ -- двумерное линейное пространство (плоскость), а $f: V \rightarrow V$ -- линейное преобразование с матрицей
+\begin{align*}
+M = 
+\begin{pmatrix}
+1 & -3 \\
+-2 & 6 
+\end{pmatrix}
+\end{align*}
+Найти базис и размерность подпространства $f(V) = \{f(v) | v \in V \}$ (эта запись означает, что мы рассматриваем множество векторов, полученное отображением всех векторов $v$ из $V$).
+
+\underline{Решение}:
+
+\setlength{\leftskip}{5ex}
+\setlength{\rightskip}{5ex}
+
+Рассмотрим, куда перейдёт произвольный вектор $v \in V$ при отображении $f$:
+\begin{align*}
+f(v) = M \cdot v =
+\begin{pmatrix}
+1 & -3 \\
+-2 & 6 
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+v_1 \\
+v_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+v_1 - 3 v_2 \\
+-2 v_1 + 6 v_2
+\end{pmatrix}
+= \big[ p = v_1 - 3 v_2 \big] =
+\begin{pmatrix}
+p \\
+-2 p
+\end{pmatrix}
+\end{align*}
+
+В силу того что мы взяли произвольный вектор из $V$, любой вектор из $f(V)$ имеет вид $(p, -2p)^T$, где $p \in \mathbb{R}$. В качестве базисного вектора можно взять $(1, -2)^T$. Таким образом, система $\{ (1, -2)^T \}$ -- это базис $f(V)$ и размерность этого подпространства равняется единице.
+Заметьте! что хотя размерность $f(V)$ равна единице, векторы в этом подпространстве обладают двумя компонентами :) потому что размерность означает то количество векторов, которое необходимо, чтобы выразить любой другой вектор из заданного пространства.
+
+\setlength{\leftskip}{0ex}
+\setlength{\rightskip}{0ex}
+
+
+\subsection*{Ядро и образ линейного отображения}
+
+\textbf{Определение 2.4.} 
+Пусть $\varphi \in L(U,V)$ -- линейное отображение из $U$ в $V$. Тогда
+\begin{itemize} [noitemsep]
+    \item Ker $\varphi = \{ x \in U | \ \varphi(x) = 0\}$ -- \textit{ядро} отображения, т.е. всё, что переходит в ноль из $U$.
+    \item Im $\varphi = \{y \in V | \ \exists x \in U : \varphi(x) = y \}$ -- \textit{образ} отображения, т.е. все значения в $V$, куда в целом можем попасть.
+\end{itemize}
+
+\textbf{Упражнение 2.4.} Все квадратные матрицы порядка $2$ умножаются справа на матрицу
+\begin{align*}
+C = 
+\begin{pmatrix}
+1 & 2 & 3 \\
+2 & 4 & 6
+\end{pmatrix}
+\end{align*}
+Этим определено отображение $\varphi: M^{2 \times 2} \rightarrow M^{2 \times 3}$ пространства матриц порядка $2$ в пространство матриц размера $2 \times 3$. Найти матрицу этого отображения в стандартном базисе, а также базисы в Ker $\varphi$ и Im $\varphi$.
+
+\underline{Решение}:
+
+\setlength{\leftskip}{5ex}
+\setlength{\rightskip}{5ex}
+
+Возьмём произвольный $X \in M^{2 \times 2}$ и посмотрим на его образ:
+\begin{align*}
+\varphi(X) = X \cdot C =
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+1 & 2 & 3 \\
+2 & 4 & 6
+\end{pmatrix}
+=
+\begin{pmatrix}
+a + 2b & 2a + 4b & 3a + 6b \\
+c + 2d & 2c + 4d & 3c + 6d
+\end{pmatrix}
+=
+\begin{pmatrix}
+p & 2p & 3p \\
+q & 2q & 3q
+\end{pmatrix}
+\end{align*}
+
+Здесь мы приняли $p = a + 2b$ и $q = c + 2d$.
+
+Чтобы $X \in$ Ker $\varphi$, нужно, чтобы $\varphi (X) = 0$, т.е.:
+\begin{align*}
+X \cdot C =
+\begin{pmatrix}
+p & 2p & 3p \\
+q & 2q & 3q
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{pmatrix}
+\end{align*}
+
+Отсюда получаем систему уравнений:
+ \begin{align*}
+ \begin{cases}
+    a + 2b = 0 \\
+    c + 2d = 0
+\end{cases}
+\Rightarrow
+\begin{cases}
+    a = -2b \\
+    c = -2d
+\end{cases}
+\end{align*}
+
+Таким образом, в ядре нашего отображения лежат все квадратные матрицы вида
+\begin{align*}
+\begin{pmatrix}
+-2b & b \\
+-2d & d
+\end{pmatrix}
+\end{align*}
+и только они. Нетрудно понять, что система:
+\begin{align*}
+\left \{
+\begin{pmatrix}
+-2 & 1 \\
+0 & 0
+\end{pmatrix},
+\begin{pmatrix}
+0 & 0 \\
+-2 & 1
+\end{pmatrix}
+\right \}
+\end{align*}
+является базисом, а размерность ядра dim Ker $\varphi = 2$. Далее посмотрим на образ отображения. Как уже было показано выше $\forall X \ \varphi(X)$ имеет вид:
+\begin{align*}
+\begin{pmatrix}
+p & 2p & 3p \\
+q & 2q & 3q
+\end{pmatrix}
+\end{align*}
+
+В качестве базиса можно взять систему
+\begin{align*}
+\left \{
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & 0 & 0
+\end{pmatrix},
+\begin{pmatrix}
+0 & 0 & 0 \\
+1 & 2 & 3
+\end{pmatrix}
+\right \}
+\end{align*}
+Размерность образа dim Im $\varphi = 2$.
+
+\setlength{\leftskip}{0ex}
+\setlength{\rightskip}{0ex}
+
+\end{spacing}
+\end{document}
