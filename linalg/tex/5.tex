@@ -28,7 +28,7 @@ $$[\varphi]_{\textbf{f,e}} = (a_{ij}) \in F^{m \times n}$$
 $$[\varphi x]_{\textbf{f}} = [\varphi]_{\textbf{f,e}} [x]_{\textbf{e}},$$
 где $[\varphi x]_{\textbf{f}}$ -- разложение $\varphi x$ по базису $\textbf{f}$, $[x]_{\textbf{e}}$ -- разложение $x$ по базису $\textbf{e}$, $[\varphi]_{\textbf{f,e}}$ -- матрица отображения $\varphi$, построенная в базисах $\textbf{e}$ и $\textbf{f}$.
 
-\textit{Доказательство.} Пусть $[x]_{\textbf{e}}= (\alpha_1, ..., \alpha_n)^T$. Далее для краткости записи опустим указание базисов. Перейдём к координатам $x$ и посмотрим на $\varphi x$:
+\textbf{Доказательство.} Пусть $[x]_{\textbf{e}}= (\alpha_1, ..., \alpha_n)^T$. Далее для краткости записи опустим указание базисов. Перейдём к координатам $x$ и посмотрим на $\varphi x$:
 $$\varphi x = \varphi \left ( \sum_{j=1}^n \alpha_j e_j \right ) = \sum_{j=1}^n \alpha_j \varphi e_j = \sum_{j=1}^n \alpha_j \sum_{i=1}^m a_{ij} f_i = \sum_{i=1}^m \left( \sum_{j=1}^n a_{ij} \alpha_j \right) f_i $$
 Таким образом, мы действительно получили разложение вектора $\varphi x$ в базисе $\textbf{f}$, которое соответствует умножение матрицы $[\varphi]$ на координатный столбец $x$.
 
